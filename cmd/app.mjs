@@ -1,7 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { executeQuery } from '../db/db.mjs';
+import { authenticateToken } from '../internal/middlewares/authenticate.mjs';
+import userAuth from '../internal/routes/authRoutes.mjs';
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -32,6 +33,14 @@ app.use(express.json());
 app.get('/', (req, res) => {
 	res.send('Hello Express');
 });
+
+
+//Auth routes
+app.use('/api', userAuth);
+
+// anyhting after this will get token
+app.use(authenticateToken);
+
 
 
 app.listen(port), () => {
