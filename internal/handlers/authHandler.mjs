@@ -9,11 +9,11 @@ dotenv.config();
 const sign = promisify(jwt.sign);
 
 
-const createToken = async (id, expiresIn) => {
+export const createToken = async (id, expiresIn) => {
 	return await sign({ id }, process.env.SECRET, { expiresIn });
 };
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		const user = await loginFunction(email, password);
@@ -30,7 +30,7 @@ const loginUser = async (req, res) => {
 };
 
 
-const signUpUser = async (req, res) => {
+export const signUpUser = async (req, res) => {
 	const { username, email, password } = req.body;
 	try {
 		await signUpFunction(username, email, password);
