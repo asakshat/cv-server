@@ -39,7 +39,6 @@ app.get('/', (req, res) => {
 app.use('/api', userAuth);
 
 // anyhting after this will get token
-app.use(authenticateToken);
 
 
 
