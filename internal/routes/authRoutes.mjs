@@ -7,6 +7,5 @@ router.post('/user/login',loginUser)
 router.post('/user/signup',signUpUser)
 
 // user info 
-router.post('/user/info', userInfoHandler) 
 
 export default router

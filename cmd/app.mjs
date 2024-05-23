@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { authenticateToken } from '../internal/middlewares/authenticate.mjs';
 import userAuth from '../internal/routes/authRoutes.mjs';
+import userInfo from '../internal/routes/userInfoRoutes.mjs';
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 app.use('/api', userAuth);
 
 // anyhting after this will get token
+app.use('/api', userInfo);
 
 
 
