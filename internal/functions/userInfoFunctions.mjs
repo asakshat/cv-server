@@ -1,4 +1,4 @@
-import { executeQuery } from "../database/database.js";
+import { executeQuery } from "../../db/db.mjs";
 
 export const postUserInfoFunctions = async (user_id, first_name, last_name , email, address , zipcode , gender , driving_license) => {
   try {
