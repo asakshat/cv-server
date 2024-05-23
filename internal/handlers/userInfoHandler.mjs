@@ -1,11 +1,35 @@
-import { postUserInfoFunctions } from "../functions/userInfoFunctions.mjs";
+import { editUserInfoFunctions, postUserInfoFunctions,deleteUserInfoFunctions } from "../functions/userInfoFunctions.mjs";
 
-export const userInfoHandler = async (req, res) => {
-  const { user_id, first_name, last_name , email, address , zipcode , gender , driving_license} = req.body;
-  try {
-    await postUserInfoFunctions(user_id, first_name, last_name , email, address , zipcode , gender , driving_license);
-    res.status(200).json({ message: 'User info added' }); }
-  catch (err) {
-    res.status(400).json({ error: err.message });
+export const postUserInfo = async (req, res) => {
+  const {  first_name, last_name , email, address , zipcode , gender , driving_license} = req.body;
+  const user_id = req.params.user_id;
+  const info_id = req.params.info_id;
+
+  if (req.method === 'POST') {
+    try {
+      await postUserInfoFunctions(info_id,user_id, first_name, last_name , email, address,zipcode,gender,driving_license);
+      res.send('User info added');  
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    };
+  } else if (req.method === 'GET') {
+  } else if (req.method === 'PUT') {
+    try{
+      await editUserInfoFunctions(info_id,user_id, first_name, last_name , email, address , zipcode , gender,driving_license);
+      res.send('User info updated');  
+
+    }catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  } else if (req.method === 'DELETE') {
+    try{
+      await deleteUserInfoFunctions(info_id,user_id);
+      res.send('User info deleted');
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    } 
+  } else { 
+    res.status(405).send({ error: 'Method not allowed' });
   }
+  
 } 
