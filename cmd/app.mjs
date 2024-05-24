@@ -5,6 +5,7 @@ import { authenticateToken } from '../internal/middlewares/authenticate.mjs';
 import userAuth from '../internal/routes/authRoutes.mjs';
 import userInfo from '../internal/routes/userInfoRoutes.mjs';
 import userExperience from '../internal/routes/userExperienceRoutes.mjs';
+import userQualification from '../internal/routes/qualificationRoutes.mjs';
 
 
 
@@ -44,6 +45,7 @@ app.use('/api', userAuth);
 // anyhting after this will get token
 app.use('/api', userInfo);
 app.use('/api' , userExperience)
+app.use('/api', userQualification)
 
 
 
