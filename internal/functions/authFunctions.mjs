@@ -50,3 +50,7 @@ export const loginFunction = async (email, password) => {
 		return user[0];
 	}
 };
+
+export const logoutFunction = async (req, res) => {
+	
+}

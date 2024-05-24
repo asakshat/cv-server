@@ -1,6 +1,5 @@
 import express from 'express'
 import { loginUser ,signUpUser,} from '../handlers/authHandler.mjs'
-import { userInfoHandler } from '../handlers/userInfoHandler.mjs'
 const router = express.Router();
 
 // auth 

@@ -5,14 +5,15 @@ import {
 } from "../functions/experienceInfoFunctions.mjs";
 
 export const userExperienceHandler = async (req, res) => {
-    const { user_id, experience_id, job_title, city, employer, start_date, end_date, job_description } = req.body;
+    const { job_title, city, employer, start_date, end_date, job_description } = req.body;
+    const  user_id  = req.params.user_id;
+    const experience_id = req.params.experience_id;
 
     try {
         if (req.method === "POST") { 
             await postExperienceFunctions(user_id, job_title, city, employer, start_date, end_date, job_description);
             res.status(201).json({ message: 'User experience added' }); 
         } else if (req.method === "PUT") {
-            const user_id = req.body.user_id;
             const updatedExperience = await editExperienceFunctions(user_id, experience_id, job_title, city, employer, start_date, end_date, job_description);
             res.status(200).json({ message: 'User experience updated', experience: updatedExperience }); 
         } else if (req.method === "DELETE") { 

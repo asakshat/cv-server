@@ -14,7 +14,7 @@ export const postExperienceFunctions = async (user_id, job_title, city, employer
     try {
         const query = `UPDATE "Experience" 
                        SET job_title = $3, city = $4, employer = $5, start_date = $6, end_date = $7, job_description = $8
-                       WHERE user_id = $1 AND experience_id = $2
+                       WHERE user_id = $1 AND id = $2
                        RETURNING *`; 
 
         const [updatedExperience] = await executeQuery(query, [user_id, experience_id, job_title, city, employer, start_date, end_date, job_description]);
@@ -32,7 +32,7 @@ export const postExperienceFunctions = async (user_id, job_title, city, employer
  export const deleteExperienceFunction = async (user_id, experience_id) => {
     try {
       const deletedExperience = await executeQuery(
-        `DELETE FROM "Experience" WHERE user_id = $1 AND experience_id = $2 RETURNING *`, 
+        `DELETE FROM "Experience" WHERE user_id = $1 AND id = $2 RETURNING *`, 
         [user_id, experience_id]
       );
   

@@ -7,7 +7,7 @@ export const postUserInfo = async (req, res) => {
 
   if (req.method === 'POST') {
     try {
-      await postUserInfoFunctions(info_id,user_id, first_name, last_name , email, address,zipcode,gender,driving_license);
+      await postUserInfoFunctions(user_id, first_name, last_name , email, address,zipcode,gender,driving_license);
       res.send('User info added');  
     } catch (err) {
       res.status(400).json({ error: err.message });
@@ -23,7 +23,7 @@ export const postUserInfo = async (req, res) => {
     }
   } else if (req.method === 'DELETE') {
     try{
-      await deleteUserInfoFunctions(info_id,user_id);
+      await deleteUserInfoFunctions(user_id,info_id);
       res.send('User info deleted');
     } catch (err) {
       res.status(400).json({ error: err.message });
