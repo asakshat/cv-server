@@ -6,6 +6,7 @@ import userAuth from '../internal/routes/authRoutes.mjs';
 import userInfo from '../internal/routes/userInfoRoutes.mjs';
 import userExperience from '../internal/routes/userExperienceRoutes.mjs';
 import userQualification from '../internal/routes/qualificationRoutes.mjs';
+import userLanguage from '../internal/routes/languageRoutes.mjs';
 
 
 
@@ -46,6 +47,7 @@ app.use('/api', userAuth);
 app.use('/api', userInfo);
 app.use('/api' , userExperience)
 app.use('/api', userQualification)
+app.use('/api', userLanguage)
 
 
 
